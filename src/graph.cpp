@@ -49,18 +49,27 @@ void Graph::tranporGraph(){
     }
     adj = auxGraph;
 }
-bool Graph::checkInsatifability(int vertex, int value)
-{
-    for (int x : adj[vertex-1])
-    {
-        if(x == value){
+bool contains(std::list<int> list, int value){
+    for(int x : list){
+        if(x==value){
             return true;
-        }else{
-        return checkInsatifability(x,value);
-    }
-    std::cout<<vertex <<" "<<x<<"\n";
+        }
     }
     return false;
+}
+bool Graph::checkInsatifability(int vertex, std::list<int> * added)
+{
+    for (int x : adj[vertex])
+    {
+       if(contains(*added,opositValue(x))){
+            return true;
+       }else if(contains(*added,x)){
+            return false;
+       }else{
+        added->push_back(x);
+        return checkInsatifability(x,added);
+       }
+    }
 }
 bool Graph::isCyclicUtil(int v, bool visited[], bool *recStack)
 {
@@ -98,6 +107,7 @@ bool Graph::isCyclic()
     // stack
     bool *visited = new bool[size];
     bool *recStack = new bool[size];
+
     for (int i = 0; i < size; i++)
     {
         visited[i] = false;
@@ -110,7 +120,7 @@ bool Graph::isCyclic()
     {
         if (!visited[i] && isCyclicUtil(i, visited, recStack))
         {
-            if(checkInsatifability(i,opositValue(i))){
+            if(checkInsatifability(i,new std::list<int>[size])){
             return true;
             }
         }

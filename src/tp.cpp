@@ -14,7 +14,6 @@ int main()
   {
     std::cin >> followers;
     std::cin >> proposals;
-    std::cout << "-------------------------\n";
     if (followers == 0 && proposals == 0)
     {
       break;
@@ -53,7 +52,7 @@ int main()
       }
     }
     graph->tranporGraph();
-    graph->printGraph();
+    // graph->printGraph();
     if(graph->isCyclic()){
       std::cout<<"não\n";
     }else{
