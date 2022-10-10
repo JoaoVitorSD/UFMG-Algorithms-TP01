@@ -81,7 +81,6 @@ bool Graph::isCyclicUtil(int v, bool visited[], bool *recStack)
 
         // Recur for all the vertices adjacent to this vertex
         std::list<int>::iterator i;
-        i++;
         for (i = adj[v].begin(); i != adj[v].end(); ++i)
         {
             if (!visited[*i] && isCyclicUtil(*i, visited, recStack))
