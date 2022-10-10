@@ -20,17 +20,36 @@ class Graph{
     std::list<int> *adj;    // Pointer to an array containing adjacency lists
 	bool isCyclicUtil(int size, bool visited[], bool *rs);  // used by isCyclic()
     bool checkInsatifability(int vertex, std::list<int>* added);
+    // used by icCyclic()
     int opositValue(int value);
-    public : Graph(int size); // Constructor
+    // used by checkInsatifability
+    public : Graph(int size); 
     void tranporGraph ();
-    void addEdge(int size, int w);   // to add an edge to graph
+    void addEdge(int size, int w); 
     bool isCyclic();
-    void printGraph(); // returns true if there is a cycle in this graph
+    void printGraph();
+    //used for tests
 };
 ```
 O atributo *adj* representa a lista de adjancência em si. Como percorremos um vetor de listar, foi necessário transformar os valores negados em representações arbitrárias das afirmações. Por exemplo, temos 4 propostas ao todo. As propostas são representadas do 1 ao 4, já suas negações do 5 ao 8, em que -1 é:
 > quantidade de propostas+valor da afirmativa = 5
-> -2 = 6
-> -3 = 7
-> -4 = 8
+>-2 = 6
+>-3 = 7
+>-4 = 8
+
+### transporGraph()
+Transpõem o grafo, invertendo a direção de todas as arestas.
+### opositValue()
+Returna a negação do statement, exemplo:
+
+4 arestas
+
+>opositValue(2)
+>6
+>opositValue(6)
+>2
+
+addEdge()
+adiciona um vértice para outro vértice, não permite duplicadas
+
 
