@@ -9,7 +9,7 @@ HDRS =  $(INC)/graph.hpp
 CFLAGS = -g -Wall -c -I$(INC)
 INP = input
 
-EXE = ./$(BIN)/tp01
+EXE = ./tp01.out
 all: $(EXE)
 	$(EXE) < input.txt
 		
