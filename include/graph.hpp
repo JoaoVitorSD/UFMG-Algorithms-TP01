@@ -1,8 +1,5 @@
 #include<bits/stdc++.h>
- 
- 
-class Graph
-{
+class Graph{
     int size;     // No. of vertices
     std::list<int> *adj;    // Pointer to an array containing adjacency lists
     bool isCyclicUtil(int size, bool visited[], bool *rs);  // used by isCyclic()
