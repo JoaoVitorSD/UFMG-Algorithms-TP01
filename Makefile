@@ -11,7 +11,7 @@ INP = input
 
 EXE = ./$(BIN)/tp
 all: $(EXE)
-	$(EXE)
+	$(EXE) < input.txt
 		
 $(BIN)/tp: $(OBJS)
 	$(CC) -pg -o $(BIN)/tp $(OBJS) $(LIBS)

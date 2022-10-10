@@ -5,10 +5,9 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "enter program name, for example ${workspaceFolder}/a.out",
+            "program": "enter program name, for example ${workspaceFolder}/bin/tp.out",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
