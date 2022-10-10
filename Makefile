@@ -1,22 +1,20 @@
 CC = g++
-LIBS = -lm
 SRC = src
 OBJ = obj
 INC = include
-BIN = bin
 OBJS = $(OBJ)/tp.o $(OBJ)/graph.o
 HDRS =  $(INC)/graph.hpp
-CFLAGS = -g -Wall -c -I$(INC)
+CFLAGS = -I$(INC)
 INP = input
 
-EXE = ./$(BIN)/tp
+EXE = ./tp01
 all: $(EXE)
 	$(EXE) < input.txt
 		
-$(BIN)/tp: $(OBJS)
-	$(CC) -pg -o $(BIN)/tp $(OBJS) $(LIBS)
-$(OBJ)/tp.o: $(HDRS) $(SRC)/tp.cpp
-	$(CC) $(CFLAGS) -o $(OBJ)/tp.o $(SRC)/tp.cpp
+tp01: $(OBJS)
+	$(CC) -o tp01 $(OBJS) 
+$(OBJ)/tp01.o: $(HDRS) $(SRC)/tp01.cpp
+	$(CC) $(CFLAGS) -o $(OBJ)/tp01.o $(SRC)/tp01.cpp
 $(OBJ)/graph.o: $(HDRS) $(SRC)/graph.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/graph.o $(SRC)/graph.cpp
 
