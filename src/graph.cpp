@@ -29,6 +29,39 @@ void Graph::printGraph()
         std::cout << "\n";
     }
 }
+int Graph::opositValue(int number){
+    //negaive or oposite value of sentence
+    int valueAux = number;
+    if(number>=(size/2)){
+        valueAux -= (size/2);
+    }else{
+    valueAux += (size/2);
+    }
+    return valueAux;
+}
+
+void Graph::tranporGraph(){
+    std::list<int> * auxGraph = new std::list<int>[size];
+    for(int i =0;i<size;i++){
+        for(int x : adj[i]){
+        auxGraph[x].push_back(i);
+        }
+    }
+    adj = auxGraph;
+}
+bool Graph::checkInsatifability(int vertex, int value)
+{
+    for (int x : adj[vertex-1])
+    {
+        if(x == value){
+            return true;
+        }else{
+        return checkInsatifability(x,value);
+    }
+    std::cout<<vertex <<" "<<x<<"\n";
+    }
+    return false;
+}
 bool Graph::isCyclicUtil(int v, bool visited[], bool *recStack)
 {
     if (visited[v] == false)
@@ -44,13 +77,12 @@ bool Graph::isCyclicUtil(int v, bool visited[], bool *recStack)
         {
             if (!visited[*i] && isCyclicUtil(*i, visited, recStack))
             {
-
-                return true;
+                    return true;
             }
             else if (recStack[*i])
             {
-                return true;
-            }
+                    return true;
+                }
         }
     }
     recStack[v] = false; // remove the vertex from recursion stack
@@ -78,7 +110,9 @@ bool Graph::isCyclic()
     {
         if (!visited[i] && isCyclicUtil(i, visited, recStack))
         {
+            if(checkInsatifability(i,opositValue(i))){
             return true;
+            }
         }
     }
     return false;

@@ -52,6 +52,7 @@ int main()
         graph->addEdge(opinion[3] , opinion[2]+ proposals);
       }
     }
+    graph->tranporGraph();
     graph->printGraph();
     if(graph->isCyclic()){
       std::cout<<"não\n";
