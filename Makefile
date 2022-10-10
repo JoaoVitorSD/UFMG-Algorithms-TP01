@@ -11,7 +11,7 @@ INP = input
 
 EXE = ./tp01.out
 all: $(EXE)
-	$(EXE) < input.txt
+	$(EXE) < test/in.txt > test/try.txt
 		
 $(BIN)/tp01: $(OBJS)
 	$(CC) -pg -o $(BIN)/tp01 $(OBJS) $(LIBS)

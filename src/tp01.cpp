@@ -47,14 +47,14 @@ int main()
       }else
       {
         // A ou B é equivalente, ao somar com proposals, é equivalente a negação
-        graph->addEdge(opinion[2] , opinion[3]+proposals);
-        graph->addEdge(opinion[3] , opinion[2]+ proposals);
+        graph->addEdge(opinion[2] + proposals, opinion[3]);
+        graph->addEdge(opinion[3] + proposals, opinion[2]);
       }
     }
     graph->tranporGraph();
     // graph->printGraph();
     if(graph->isCyclic()){
-      std::cout<<"não\n";
+      std::cout<<"nao\n";
     }else{
       std::cout<<"sim\n";
     }
