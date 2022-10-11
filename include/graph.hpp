@@ -3,19 +3,19 @@
 #include <iostream>
 class Graph
 {
-    int size;                                              // No. of vertices
-    std::list<int> *adj;                                   // Pointer to an array containing adjacency lists
-    bool DFS(int size); // used by isCyclic()
-    bool checkInsatifability(int vertex, std::list<int> *added);
+    int size;                                             
+    std::list<int> *vertexes;                                  
+    bool DFS(int size); 
+    bool checkUnsatisfiable(int vertex, std::list<int> *added);
     void restartVectors();
     int opositValue(int value);
     bool *visited ;
     bool *recStack;
 
 public:
-    Graph(int size); // Constructor
+    Graph(int size); 
     void transposeGraph();
-    void addEdge(int size, int w); // to add an edge to graph
-    bool isCyclic();
-    void printGraph(); // returns true if there is a cycle in this graph
+    void addEdge(int size, int w);
+    bool isUnsatisfiable();
+    void printGraph(); 
 };

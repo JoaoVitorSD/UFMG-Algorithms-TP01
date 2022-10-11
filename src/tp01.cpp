@@ -28,18 +28,18 @@ int main()
       for( int i = 0;i<4;i++){
       }
       if(opinion[0]==0){
-        graph->addEdge(opinion[1],opinion[1]+proposals);
+        graph->addEdge(opinion[1] , opinion[1]+ proposals);
       }
       else if (opinion[1] == 0)
       {
-        graph->addEdge(opinion[0], opinion[0] + proposals);
+        graph->addEdge(opinion[0] , opinion[0]+ proposals);
       }else{
         // A ou B é equivalente, ao somar com proposals, é equivalente a negação
         graph->addEdge(opinion[0]+proposals, opinion[1]);
         graph->addEdge(opinion[1]+proposals, opinion[0]);
       }
       if(opinion[2]==0){
-        graph->addEdge(opinion[3],opinion[3]+proposals);
+        graph->addEdge(opinion[3] , opinion[3]+ proposals);
       }
       else if (opinion[3] == 0)
       {
@@ -51,9 +51,13 @@ int main()
         graph->addEdge(opinion[3] + proposals, opinion[2]);
       }
     }
-    if(graph->isCyclic()){
+    // graph->printGraph();
+    if (graph->isUnsatisfiable())
+    {
       std::cout<<"nao\n";
-    }else{
+    }
+    else
+    {
       std::cout<<"sim\n";
     }
   }

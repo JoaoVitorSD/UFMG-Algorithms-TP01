@@ -11,18 +11,10 @@ INP = input
 
 EXE = ./tp01.out
 all: $(EXE)
-	$(EXE) < test/in.txt >test/outP.txt;
-	diff test/outP.txt test/out.txt
+	$(EXE) < casoTeste01.txt;
 tp01.out: $(OBJS)
-	$(CC) -pg -o tp01.out $(OBJS) $(LIBS)
+	$(CC)  -o tp01.out $(OBJS) $(LIBS)
 $(OBJ)/tp01.o: $(HDRS) $(SRC)/tp01.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/tp01.o $(SRC)/tp01.cpp
 $(OBJ)/graph.o: $(HDRS) $(SRC)/graph.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/graph.o $(SRC)/graph.cpp
-
-compare:
-	for number in 1 2 3 4 5 6 7 8; do \
-	$(EXE) < input/entrada_$$number.txt > $(SRC)/saida.txt; \
-	echo "comparing $$number"; \
-	diff --color $(SRC)/saida.txt outp01ut/saida_$$number.txt; \
-	done

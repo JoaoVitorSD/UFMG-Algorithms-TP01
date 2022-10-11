@@ -3,19 +3,19 @@
 Graph::Graph(int size)
 {
     this->size = size;
-    adj = new std::list<int>[size];
+    vertexes = new std::list<int>[size];
     visited = new bool[size];
     recStack = new bool[size];
 }
 void Graph::addEdge(int pos, int w)
 {
     // adiciona vértice w ao pos
-    for(int i : adj[pos]){
+    for(int i : vertexes[pos]){
         if(i==w){
             return;
         }
     }
-    adj[pos].push_back(w);
+    vertexes[pos].push_back(w);
 }
 
 void Graph::printGraph()
@@ -23,9 +23,9 @@ void Graph::printGraph()
     //usado para teste, printa o grafo
     for (int i = 1; i < size; i++)
     {
-        auto l_front = adj[i].begin();
+        auto l_front = vertexes[i].begin();
         std::cout << i << " - ";
-        for (int x : adj[i])
+        for (int x : vertexes[i])
         {
             std::cout << x<<" ";
         }
@@ -47,11 +47,11 @@ void Graph::transposeGraph()
 {
     std::list<int> * auxGraph = new std::list<int>[size];
     for(int i =0;i<size;i++){
-        for(int x : adj[i]){
+        for(int x : vertexes[i]){
         auxGraph[x].push_back(i);
         }
     }
-    adj = auxGraph;
+    vertexes = auxGraph;
 }
 bool contains(std::list<int> list, int value){
     for(int x : list){
@@ -61,9 +61,9 @@ bool contains(std::list<int> list, int value){
     }
     return false;
 }
-bool Graph::checkInsatifability(int vertex, std::list<int> * added)
+bool Graph::checkUnsatisfiable(int vertex, std::list<int> * added)
 {
-    for (int x : adj[vertex])
+    for (int x : vertexes[vertex])
     {
        if(contains(*added,opositValue(x))){
             return true;
@@ -71,7 +71,7 @@ bool Graph::checkInsatifability(int vertex, std::list<int> * added)
             return false;
        }else{
         added->push_back(x);
-        return checkInsatifability(x,added);
+        return checkUnsatisfiable(x,added);
        }
     }
 }
@@ -81,7 +81,7 @@ bool Graph::DFS(int v)
     {
         visited[v] = true;
         recStack[v] = true;
-        for (int i : adj[v])
+        for (int i : vertexes[v])
         {
             if (!visited[i] && DFS(i))
             {
@@ -103,16 +103,15 @@ void Graph::restartVectors(){
         recStack[i] = false;
     }
 }
-bool Graph::isCyclic()
+bool Graph::isUnsatisfiable()
 {
    transposeGraph();
    restartVectors();
-
     for (int i = 1; i < size; i++)
     {
         if (!visited[i] && DFS(i))
         {
-            if(checkInsatifability(i,new std::list<int>[size])){
+            if(checkUnsatisfiable(i,new std::list<int>[size])){
             return true;
             }
         }

@@ -14,42 +14,68 @@ Este trabalho foi implemtado com a linguagem C++, em um sistema WSl com a IDE Vi
 Neste trabalho, foi criado um TAD *Graph*, que possui uma lista de adjacência e alguns métodos auxiliares para determinar se o sistema é satisfazível ou não.
 
 ```cpp
-class Graph{
+class Graph
+{
+    int size;                                             
+    std::list<int> *vertexes;                                  
+    bool DFS(int size); 
+    bool checkUnsatisfiable(int vertex, std::list<int> *added);
+    void restartVectors();
+    int opositValue(int value);
+    bool *visited ;
+    bool *recStack;
 
-    int size;     // No. of vertices
-    std::list<int> *adj;    // Pointer to an array containing adjacency lists
-	bool isCyclicUtil(int size, bool visited[], bool *rs);  // used by isCyclic()
-    bool checkInsatifability(int vertex, std::list<int>* added);
-    // used by icCyclic()
-    int opositValue(int value);
-    // used by checkInsatifability
-    public : Graph(int size); 
-    void tranporGraph ();
-    void addEdge(int size, int w); 
-    bool isCyclic();
-    void printGraph();
-    //used for tests
+public:
+    Graph(int size); 
+    void transposeGraph();
+    void addEdge(int size, int w);
+    bool isUnsatisfiable();
+    void printGraph(); 
 };
 ```
-O atributo *adj* representa a lista de adjancência em si. Como percorremos um vetor de listar, foi necessário transformar os valores negados em representações arbitrárias das afirmações. Por exemplo, temos 4 propostas ao todo. As propostas são representadas do 1 ao 4, já suas negações do 5 ao 8, em que -1 é:
-> quantidade de propostas+valor da afirmativa = 5
->-2 = 6
->-3 = 7
->-4 = 8
+O atributo **vertexes** representa a lista de adjancência em si. Como percorremos um vetor de listas, foi necessário transformar os valores negados em representações arbitrárias das afirmações. Por exemplo, temos 4 propostas ao todo. As propostas são representadas do 1 ao 4, já suas negações do 5 ao 8, em que -1 é:
 
-### transporGraph()
+quantidade de propostas+valor da afirmativa = 5
+
+-2 -> 6
+
+-3 -> 7
+
+-4 -> 8
+
+## Descrição dos métodos da classe Graph
+
+### transposeGraph()
+
 Transpõem o grafo, invertendo a direção de todas as arestas.
+
 ### opositValue()
-Returna a negação do statement, exemplo:
 
-4 arestas
+Returna a negação do valor, exemplo para 4 propostas:
 
->opositValue(2)
->6
->opositValue(6)
->2
+```c++
+opositValue(2)
+6
+opositValue(6)
+2
+```
+### restartVectors()
 
-addEdge()
-adiciona um vértice para outro vértice, não permite duplicadas
+Zera os valores dos vetores de visitados e os da pilha de recursão.
 
+### addEdget()
+
+Direciona um vértice a outro
+
+### checkUnsatisfiable()
+
+Checa se um mesmo elemento possui sua negação em um CFC
+
+### DFS(int size)
+Identifica ciclos e chama **checkUnsatisfiable** para analisar a CFC
+
+### isUnsatisfiable()
+Chama **transposeGraph()** e chama a função DFS para todos os vértices que foram adicionados.
+
+# Compilação
 
