@@ -52,7 +52,6 @@ int main()
       }
     }
     graph->tranporGraph();
-    // graph->printGraph();
     if(graph->isCyclic()){
       std::cout<<"nao\n";
     }else{

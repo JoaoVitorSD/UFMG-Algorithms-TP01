@@ -1,4 +1,6 @@
-#include<bits/stdc++.h>
+#include<list>
+#include <stdio.h>
+#include <iostream>
 class Graph{
     int size;     // No. of vertices
     std::list<int> *adj;    // Pointer to an array containing adjacency lists

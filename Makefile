@@ -12,8 +12,7 @@ INP = input
 EXE = ./tp01.out
 all: $(EXE)
 	$(EXE) < test/in.txt >test/outP.txt;
-	diff --color test/out.txt test/outP.txt
-		
+	diff test/outP.txt test/out.txt
 tp01.out: $(OBJS)
 	$(CC) -pg -o tp01.out $(OBJS) $(LIBS)
 $(OBJ)/tp01.o: $(HDRS) $(SRC)/tp01.cpp
