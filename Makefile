@@ -18,3 +18,6 @@ $(OBJ)/tp01.o: $(HDRS) $(SRC)/tp01.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/tp01.o $(SRC)/tp01.cpp
 $(OBJ)/graph.o: $(HDRS) $(SRC)/graph.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/graph.o $(SRC)/graph.cpp
+
+clean:
+	rm obj/*
